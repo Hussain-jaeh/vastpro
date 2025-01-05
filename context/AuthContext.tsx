@@ -49,38 +49,50 @@ export const AuthProvider = ({ children }: any) => {
   const login = async (email: string, password: string) => {
     setIsLoginin(true);
     try {
-      const result = await axios.post<AuthRequest, any>(`${API_URL}/auth`, {
-        username: email,
-        password,
-      });
-      const data = result.data;
+      // Simulate an API call with mock data
+      // You can replace this with your actual API request once it's ready
+      const mockResponse = {
+        data: {
+          access_token: "mock-jwt-token-1234567890",  // A mock token
+        },
+      };
+      
+      // Simulating a successful response
+      const data = mockResponse.data;
+  
       Toast.show({
         type: "success",
-        text1: "Logged in succesfully",
+        text1: "Logged in successfully",
       });
+  
       setAuthState({
         authenticated: true,
         token: data.access_token,
       });
-
-      router.replace("/(tabs)/home");
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${data.access_token}`;
+  
+      // Simulate setting the Authorization header globally
+      axios.defaults.headers.common["Authorization"] = `Bearer ${data.access_token}`;
+  
+      // Save the token to SecureStore (local storage)
       await SecureStore.setItemAsync(TOKEN_KEY, data.access_token);
+  
+      // Navigate to the home page
+      router.replace("/(tabs)/home");
+  
       return data;
     } catch (e) {
       setIsLoginin(false);
       Toast.show({
         type: "error",
-        text1: `${(e as any).response.data}`,
+        text1: "Login failed, please try again",
       });
-      return { error: true, msg: (e as any).response.data };
+      return { error: true,  };
     } finally {
       setIsLoginin(false);
     }
   };
-  const logout = async () => {
+  
+  const logout = async () => { 
     await SecureStore.deleteItemAsync(TOKEN_KEY);
     axios.defaults.headers.common["Authorization"] = "";
     setAuthState({
