@@ -1,29 +1,29 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { MaterialIcons } from "@expo/vector-icons"; // Importing MaterialIcons from Expo Vector Icons
-import Features from "../../components/Features";  // Assuming your Features component is correctly set up
+import { MaterialIcons } from "@expo/vector-icons"; 
+import Features from "../../components/Features";  
 
 const Home = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-[#2A004E]">
-      {/* Profile Section */}
+     
       <View className="flex-row items-center px-5 pt-10 mb-5">
-        {/* Profile Image */}
+     
         <Image
           source={require("@/assets/images/imageicon.jpg")}
           resizeMode="cover" 
           className="w-16 h-16 rounded-full border-2 border-white"
         />
-        {/* Text Section */}
+        
         <View className="ml-4">
           <Text className="text-xl font-bold text-white">Hello Admin</Text>
           <Text className="text-sm text-gray-200">Experience Swift Bill Payment</Text>
         </View>
       </View>
 
-      {/* Notification Bell */}
+ 
       <View className="absolute top-[7rem] right-6">
         <MaterialIcons name="visibility" size={25} color="white" />
       </View>

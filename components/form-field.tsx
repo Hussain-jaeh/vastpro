@@ -1,47 +1,40 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
-import { Eye, EyeOff } from "lucide-react-native";
+// components/form-field.tsx
+import { View, Text, TextInput, TextInputProps } from "react-native";
 
-interface Props {
+interface Props extends TextInputProps {
   title: string;
   value: string;
-  handleChangeText: (x: string) => void;
+  handleChangeText: (text: string) => void;
+  otherStyles?: string;
+  error?: string;
   placeholder?: string;
-  otherStyles: string;
-  keyboardType?: any;
 }
-const FormField = ({
+
+export default function FormField({
   title,
   value,
   handleChangeText,
-  otherStyles,
-  keyboardType,
-  placeholder,
-}: Props) => {
-  const [showPassword, setShowPassword] = useState(false);
+  otherStyles = "",
+  error,
+  placeholder,  // Receive placeholder prop
+  ...props
+}: Props) {
   return (
-    <View className={`space-y-2 ${otherStyles}`}>
-      <Text className="text-base text-neutral-900 font-psemibold">{title}</Text>
-      <View
-        className="border-2 border-gray-400
-      w-full h-16 px-4 bg-black-100 rounded-2xl focus:border-secondary items-center flex-row"
-      >
-        <TextInput
-          className="flex-1 text-black font-psemibold text-large "
-          value={value}
-          placeholder={placeholder}
-          onChangeText={handleChangeText}
-          placeholderTextColor="#7b7b8b"
-          secureTextEntry={title === "Password" && !showPassword}
-        />
-        {title === "Password" && (
-          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-            {!showPassword ? <Eye color="black" /> : <EyeOff color="black" />}
-          </TouchableOpacity>
-        )}
-      </View>
+    <View className={`w-full ${otherStyles}`}>
+      <Text className="text-base font-medium text-neutral-700 mb-2">{title}</Text>
+      <TextInput
+        value={value}
+        onChangeText={handleChangeText}
+        placeholder={placeholder}  // Pass placeholder to TextInput
+        placeholderTextColor="#A3A3A3"  // Set the placeholder color to ensure visibility
+        className={`w-full border rounded-lg p-4 text-base ${
+          error ? "border-red-500" : "border-gray-300"
+        }`}
+        {...props}
+      />
+      {error && (
+        <Text className="text-red-500 text-sm mt-1">{error}</Text>
+      )}
     </View>
   );
-};
-
-export default FormField;
+}

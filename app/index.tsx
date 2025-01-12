@@ -30,15 +30,15 @@ export default function HomeScreen() {
         <View className="w-full justify-center min-h-[83vh] px-4 my-6">
           <View className="flex justify-center items-center">
             <Image
-              source={require("@/assets/images/saasprologo.png")}
+              source={require("@/assets/images/VastLogo.png")}
               resizeMode="contain"
               className="w-[300px] h-[60px] "
             />
           </View>
           <Text className="text-2xl text-center  text-neutral-800 text-semibold mt-10 font-semibold">
-            Sign In to Saaspro Health
+            Sign In to Vast
           </Text>
-
+1
           <FormField
             value={form.email}
             title="Email"
@@ -59,18 +59,20 @@ export default function HomeScreen() {
             handlePress={handleLogin}
             containerStyles="mt-7 "
             isLoading={isLoginin as boolean}
-            textStyles="text-white font-bold text-2xl"
+            textStyles="text-white font-bold text-2xl "
           />
           <View className="justify-center pt-5 flex-row gap-2">
             <Text className="text-lg text-purple-700 underline font-pregular">
               Don't have an account?
-            </Text>
-            <Link
-              href="/"
+              </Text>
+              <Link
+              href="/Registration/SignupRegistration"
               className="text-lg font-psemibold underline text-purple-700"
-            >
-              Sign Up
+            > 
+             <Text>Sign in</Text> 
             </Link>
+          
+          
           </View>
         </View>
       </ScrollView>
