@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "nativewind",
-    "slug": "nativewind",
+    "name": "vastpro",
+    "slug": "vastpro",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/VastLogo.png",
@@ -28,7 +28,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/VastLogo.png", 
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
@@ -44,7 +44,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "a466eca6-6447-4dd5-99bd-95cc2665a374"
+        "projectId": "5e8e685e-f743-4147-bb39-020ecc757714"
       }
     }
   }
